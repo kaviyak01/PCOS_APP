@@ -1,8 +1,27 @@
 import streamlit as st
+from sklearn.ensemble import RandomForestClassifier
 import joblib
 import numpy as np
 from catboost import CatBoostClassifier, Pool
 from recommendation import get_recommendations_by_param, SeverityClassifier
+
+
+severity_model = SeverityClassifier()  # Use your class directly (✅ no joblib)
+
+# Replace this:
+# severity_probs = severity_model.predict_proba(...)
+# severity_pred = np.argmax(severity_probs)
+# severity_levels = ["Mild", "Moderate", "Severe"]
+
+# With this:
+severity_results_dict = severity_model.classify(
+    amh=amh_ng_ml,
+    beta_hcg_1=beta_hcg_i,
+    beta_hcg_2=beta_hcg_ii,
+    bmi=bmi,
+    age=age,
+    cycle_length=cycle_length
+)
 
 
 # Session state initialization
