@@ -19,8 +19,9 @@ import numpy as np
 
 
 from catboost import CatBoostClassifier, Pool
-from recommendation import get_recommendations_by_param
 from recommendation import get_param_severity
+from recommendation import get_recommendations_by_param
+
 
 
 
@@ -246,7 +247,7 @@ if st.session_state.page == 'main':
 elif st.session_state.page == 'recommendation':
     st.title("💡 Lifestyle Recommendations")
 
-    st.write("🔍 DEBUG - Recommendations:", st.session_state.recommendations)
+    # st.write("🔍 DEBUG - Recommendations:", st.session_state.recommendations)
     for rec in st.session_state.recommendations:
         st.markdown(f'<h3 style="color: #e6b800;">{rec}</h3>', unsafe_allow_html=True)
 
