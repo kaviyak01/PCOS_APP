@@ -17,7 +17,7 @@ matplotlib
 
 seaborn
 
-joblib or pickle
+joblib
 
 streamlit
 
