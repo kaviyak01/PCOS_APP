@@ -169,7 +169,8 @@ if st.session_state.page == 'main':
                     "Age", "BMI", "Menstrual cycle length", "Excessive hair growth", "Excessive Acne", "Severity"
                 ])
                 pcos_prob = catboost_model.predict_proba(pool)[0][1]
-                threshold = 0.55  # Custom threshold
+                st.write("Raw probability from model:", pcos_prob)
+                threshold = 0.4  # Custom threshold
                 pcos_prediction = int(pcos_prob >= threshold)
 
                 prediction_result = (
