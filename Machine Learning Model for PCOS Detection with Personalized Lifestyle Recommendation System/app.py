@@ -3,29 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 import numpy as np
 from catboost import CatBoostClassifier, Pool
-from recommendation import get_recommendations_by_param, SeverityClassifier
-
-
-severity_model = SeverityClassifier()  # Use your class directly (✅ no joblib)
-
-# Replace this:
-# severity_probs = severity_model.predict_proba(...)
-# severity_pred = np.argmax(severity_probs)
-# severity_levels = ["Mild", "Moderate", "Severe"]
-
-# With this:
-if st.sidebar.button("Predict"):
-    # ✅ Input variables like amh_ng_ml are defined above this
-    ...
-    severity_results_dict = severity_model.classify(
-        amh=amh_ng_ml,
-        beta_hcg_1=beta_hcg_i,
-        beta_hcg_2=beta_hcg_ii,
-        bmi=bmi,
-        age=age,
-        cycle_length=cycle_length
-    )
-
+from recommendation import get_recommendations_by_param,get_param_severity
 
 
 # Session state initialization
@@ -192,7 +170,7 @@ if st.session_state.page == 'main':
                     "Age", "BMI", "Menstrual cycle length", "Excessive hair growth", "Excessive Acne", "Severity"
                 ])
                 pcos_prob = catboost_model.predict_proba(pool)[0][1]
-                st.write("Raw probability from model:", pcos_prob)
+                # st.write("Raw probability from model:", pcos_prob)
                 threshold = 0.4  # Custom threshold
                 pcos_prediction = int(pcos_prob >= threshold)
 
