@@ -120,7 +120,7 @@ if st.session_state.page == 'main':
         """, unsafe_allow_html=True)
 
     st.markdown("This app predicts the likelihood of PCOS and provides tailored recommendations based on severity.")
-    st.image("Screenshot 2025-01-27 180205.png")
+    # st.image("Screenshot 2025-01-27 180205.png")
     st.sidebar.header("Patient Input")
 
     # Inputs
