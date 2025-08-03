@@ -230,5 +230,8 @@ elif st.session_state.page == 'recommendation':
         st.markdown("<hr style='border: 1px solid #444444;'>", unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
+        # force rebuild
+
     if st.button("🔙 Back", key="back_button"):
         st.session_state.page = 'main'
+
