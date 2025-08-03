@@ -1,14 +1,26 @@
 import streamlit as st
-# from sklearn.ensemble import RandomForestClassifier
 import joblib
 import numpy as np
-from catboost import CatBoostClassifier, Pool
-from recommendation import get_recommendations_by_param,get_param_severity
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+
+# Sample dummy data (replace this with real severity data)
+X = np.random.rand(100, 5)  # 100 samples, 5 features
+y = np.random.randint(0, 3, 100)  # 3 severity levels: 0, 1, 2
+
+# Train/test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train model
 model = RandomForestClassifier()
 model.fit(X_train, y_train)
 
+# Save trained model
 joblib.dump(model, 'severity_classifier_model.pkl')
+
+from catboost import CatBoostClassifier, Pool
+from recommendation import get_recommendations_by_param,get_param_severity
+
 
 
 
