@@ -2,8 +2,10 @@ import streamlit as st
 import joblib
 import numpy as np
 from catboost import CatBoostClassifier, Pool
-from recommendation import get_recommendations_by_param
 from recommendation import SeverityClassifier
+from recommendation import get_recommendations_by_param
+
+
 
 # Session state initialization
 if 'page' not in st.session_state:
