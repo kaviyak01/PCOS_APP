@@ -18,23 +18,27 @@ if 'show_ranges' not in st.session_state:
     st.session_state.show_ranges = False
 
 # Load models
+
+MODEL_DIR = "Machine Learning Model for PCOS Detection with Personalized Lifestyle Recommendation System"
+
 # Load models
 @st.cache_resource
 def load_models():
     try:
         catboost_model = CatBoostClassifier()
-        catboost_model.load_model("pcos_catboost_model.cbm")
+        catboost_model.load_model(f"{MODEL_DIR}/pcos_catboost_model.cbm")
     except Exception as e:
         st.error(f"❌ Error loading PCOS model: {e}")
         catboost_model = None
 
     try:
-        severity_model = joblib.load("severity_classifier_model.pkl")
+        severity_model = joblib.load(f"{MODEL_DIR}/severity_classifier_model.pkl")
     except Exception as e:
         st.error(f"❌ Error loading severity model: {e}")
         severity_model = None
 
     return catboost_model, severity_model
+
 
 
 
