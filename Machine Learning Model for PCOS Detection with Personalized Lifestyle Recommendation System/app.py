@@ -199,23 +199,30 @@ if st.session_state.page == 'main':
                     else f"❌ No PCOS"
                 )
                 st.session_state.prediction_result = prediction_result
-                if pcos_prediction == 1 and severity_model:
-                    reduced_input = np.array([[amh_ng_ml, beta_hcg_i, beta_hcg_ii, bmi, cycle_length]])
-                    severity_probs = severity_model.predict_proba(reduced_input)[0]
-                    severity_pred = np.argmax(severity_probs)
-                    severity_confidence = severity_probs[severity_pred]
-                    severity_levels = ["Mild", "Moderate", "Severe"]
-                    severity_result = f"{severity_levels[severity_pred]} ({severity_confidence * 100:.2f}%)"
-                    st.session_state.severity_result = severity_result
+                if pcos_prediction == 1:
+                    from recommendation import SeverityClassifier  # make sure it's imported
 
-                    st.session_state.recommendations = get_recommendations_by_param(
+                    classifier = SeverityClassifier()
+                    param_severities = classifier.classify(
                         amh=amh_ng_ml,
                         beta_hcg_1=beta_hcg_i,
                         beta_hcg_2=beta_hcg_ii,
                         bmi=bmi,
                         age=age,
-                        cycle_length=cycle_length,
-                        severity=severity_result
+                        cycle_length=cycle_length
+                    )
+
+                    combined_severity = ', '.join([f"{k}: {v}" for k, v in param_severities.items()])
+                    st.session_state.severity_result = combined_severity
+
+                    st.session_state.recommendations = get_recommendations_by_param(
+                        amh=param_severities["amh"],
+                        beta_hcg_1=param_severities["beta_hcg_1"],
+                        beta_hcg_2=param_severities["beta_hcg_2"],
+                        bmi=param_severities["bmi"],
+                        age=param_severities["age"],
+                        cycle_length=param_severities["cycle_length"],
+                        severity="custom"
                     )
                 else:
                     st.session_state.severity_result = ''
