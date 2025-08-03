@@ -66,6 +66,9 @@ def get_recommendations_by_param(amh, beta_hcg_1, beta_hcg_2, bmi, age, cycle_le
     age_sev = get_param_severity(age, "age")
     cycle_sev = get_param_severity(cycle_length, "cycle_length")
 
+    st.session_state.recommendations = recommendations
+    st.write("DEBUG: Recommendations generated:", recommendations)
+
     # AMH
     if amh_sev == "Severe":
         recommendations["AMH"] = """
