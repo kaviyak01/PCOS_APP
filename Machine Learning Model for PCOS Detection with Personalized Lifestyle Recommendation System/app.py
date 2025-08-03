@@ -209,7 +209,7 @@ if st.session_state.page == 'main':
                     )
 
 
-                    st.session_state.recommendations = get_recommendations_by_param(
+                st.session_state.recommendations = get_recommendations_by_param(
                         amh=amh_ng_ml,
                         beta_hcg_1=beta_hcg_i,
                         beta_hcg_2=beta_hcg_ii,
