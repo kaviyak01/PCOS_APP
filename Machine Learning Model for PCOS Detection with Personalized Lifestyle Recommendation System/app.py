@@ -2,8 +2,8 @@ import streamlit as st
 import joblib
 import numpy as np
 from catboost import CatBoostClassifier, Pool
-from recommendation import SeverityClassifier
-from recommendation import get_recommendations_by_param
+from recommendation import get_param_severity, get_recommendations_by_param
+
 
 
 
