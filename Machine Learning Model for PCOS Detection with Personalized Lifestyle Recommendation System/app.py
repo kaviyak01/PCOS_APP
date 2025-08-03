@@ -222,7 +222,7 @@ if st.session_state.page == 'main':
                     st.session_state.recommendations = []
 
             except Exception as e:
-                st.error(f"Prediction failed: {e}")  this is the code in app.py 
+                st.error(f"Prediction failed: {e}")
 
     if st.session_state.prediction_result:
         st.markdown(f"<div class='result-box'>🩺 Prediction Result: {st.session_state.prediction_result}</div>", unsafe_allow_html=True)
