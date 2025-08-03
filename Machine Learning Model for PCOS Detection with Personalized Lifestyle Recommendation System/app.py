@@ -21,19 +21,23 @@ if 'show_ranges' not in st.session_state:
 @st.cache_resource
 def load_models():
     try:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(BASE_DIR, "pcos_catboost_model.cbm")
         catboost_model = CatBoostClassifier()
-        catboost_model.load_model("./pcos_catboost_model.cbm")
+        catboost_model.load_model(model_path)
     except Exception as e:
         st.error(f"❌ Error loading PCOS model: {e}")
         catboost_model = None
 
     try:
-        severity_model = joblib.load("severity_classifier_model.pkl")
+        severity_model_path = os.path.join(BASE_DIR, "severity_classifier_model.pkl")
+        severity_model = joblib.load(severity_model_path)
     except Exception as e:
         st.error(f"❌ Error loading severity model: {e}")
         severity_model = None
 
     return catboost_model, severity_model
+
 
 catboost_model, severity_model = load_models()
 
