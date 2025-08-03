@@ -14,7 +14,7 @@ severity_model = SeverityClassifier()  # Use your class directly (✅ no joblib)
 # severity_levels = ["Mild", "Moderate", "Severe"]
 
 # With this:
-if st.sidebar.button("Predict", key="predict_button"):
+if st.sidebar.button("Predict"):
     # ✅ Input variables like amh_ng_ml are defined above this
     ...
     severity_results_dict = severity_model.classify(
