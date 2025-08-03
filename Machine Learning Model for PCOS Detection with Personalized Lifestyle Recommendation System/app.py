@@ -244,6 +244,7 @@ if st.session_state.page == 'main':
 # Recommendation page
 elif st.session_state.page == 'recommendation':
     st.title("💡 Lifestyle Recommendations")
+st.write("DEBUG - Recommendations:", st.session_state.recommendations)
 
     for rec in st.session_state.recommendations:
         st.markdown(f'<h3 style="color: #e6b800;">{rec}</h3>', unsafe_allow_html=True)
