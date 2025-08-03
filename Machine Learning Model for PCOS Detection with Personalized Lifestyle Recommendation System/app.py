@@ -199,14 +199,15 @@ if st.session_state.page == 'main':
                     else f"❌ No PCOS"
                 )
                 st.session_state.prediction_result = prediction_result
-                severity_result = SeverityClassifier().classify(
-                        amh=amh_ng_ml,
-                        beta_hcg_1=beta_hcg_i,
-                        beta_hcg_2=beta_hcg_ii,
-                        bmi=bmi,
-                        age=age,
-                        cycle_length=cycle_length
-                    )
+                if pcos_prediction == 1 and severity_model:
+                        severity_result = SeverityClassifier().classify(
+                                amh=amh_ng_ml,
+                                beta_hcg_1=beta_hcg_i,
+                                beta_hcg_2=beta_hcg_ii,
+                                bmi=bmi,
+                                age=age,
+                                cycle_length=cycle_length
+                            )
 
 
                 st.session_state.recommendations = get_recommendations_by_param(
