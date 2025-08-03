@@ -1,3 +1,16 @@
+class SeverityClassifier:
+    def __init__(self):
+        pass
+
+    def classify(self, amh, beta_hcg_1, beta_hcg_2, bmi, age, cycle_length):
+        return {
+            "amh": get_param_severity(amh, "amh"),
+            "beta_hcg_1": get_param_severity(beta_hcg_1, "beta_hcg_1"),
+            "beta_hcg_2": get_param_severity(beta_hcg_2, "beta_hcg_2"),
+            "bmi": get_param_severity(bmi, "bmi"),
+            "age": get_param_severity(age, "age"),
+            "cycle_length": get_param_severity(cycle_length, "cycle_length")
+        }
 
 def get_param_severity(value, param):
     """
