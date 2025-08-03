@@ -14,14 +14,18 @@ severity_model = SeverityClassifier()  # Use your class directly (✅ no joblib)
 # severity_levels = ["Mild", "Moderate", "Severe"]
 
 # With this:
-severity_results_dict = severity_model.classify(
-    amh=amh_ng_ml,
-    beta_hcg_1=beta_hcg_i,
-    beta_hcg_2=beta_hcg_ii,
-    bmi=bmi,
-    age=age,
-    cycle_length=cycle_length
-)
+if st.sidebar.button("Predict", key="predict_button"):
+    # ✅ Input variables like amh_ng_ml are defined above this
+    ...
+    severity_results_dict = severity_model.classify(
+        amh=amh_ng_ml,
+        beta_hcg_1=beta_hcg_i,
+        beta_hcg_2=beta_hcg_ii,
+        bmi=bmi,
+        age=age,
+        cycle_length=cycle_length
+    )
+
 
 
 # Session state initialization
