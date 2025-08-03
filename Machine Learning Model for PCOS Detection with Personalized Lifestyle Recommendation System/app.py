@@ -19,7 +19,10 @@ joblib.dump(model, "severity_classifier_model.pkl")
 
 
 from catboost import CatBoostClassifier, Pool
-from recommendation import get_recommendations_by_param,get_param_severity
+from recommendation import get_recommendations_by_param
+
+reduced_input = np.array([[amh_ng_ml, beta_hcg_i, beta_hcg_ii, bmi, cycle_length]])
+severity_probs = severity_model.predict_proba(reduced_input)[0]
 
 
 
