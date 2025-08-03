@@ -243,8 +243,8 @@ if st.session_state.page == 'main':
 
 # Recommendation page
 
-    elif st.session_state.page == 'recommendation':
-        st.title("💡 Lifestyle Recommendations")
+elif st.session_state.page == 'recommendation':
+    st.title("💡 Lifestyle Recommendations")
 
     st.write("🔍 DEBUG - Recommendations:", st.session_state.recommendations)
     for rec in st.session_state.recommendations:
